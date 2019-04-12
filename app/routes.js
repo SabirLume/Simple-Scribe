@@ -1,6 +1,4 @@
- const mockData = require('./mockData.js')
- 
- module.exports = function(app, passport, db) {
+  module.exports = function(app, passport, db) {
 
 // normal routes ===============================================================
 
@@ -8,68 +6,38 @@
     app.get('/', function(req, res) {
       res.render('index.ejs');
     });
-    
     // folders SECTION =========================
     app.get('/folders', isLoggedIn, function(req, res) {
-        db.collection('documents').find().toArray((err, result) => {
-          if (err) return console.log(err)
-          res.render('folders.ejs', {
-            // user : req.user,
-            //passing the array of objects into file to use it
-            documents: result,
-            
-          })
-          console.log("this is showing the results" , result)
-          // console.log("this is showing the results" , result)
+      db.collection('documents').find().toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('folders.ejs', {
+          // user : req.user,
+          //passing the array of objects into file to use it
+          documents: result 
         })
+        console.log("this is showing the results" , result)
+        // console.log("this is showing the results" , result)
+      })
     });
-  //   app.get('/folders', isLoggedIn, function(req, res) {
-  //     db.collection('documents').find({user: req.body.user, title: req.body.title}).toArray((err, result) => {
-  //       if (err) return console.log(err)
-  //       res.render('folders.ejs', {
-  //         // user : req.user,
-  //         //passing the array of objects into file to use it
-  //         documents: result,
-          
-  //       })
-  //       console.log("this is showing the results" , result)
-  //       // console.log("this is showing the results" , result)
-  //     })
-  // });
-    // app.get('/folders', isLoggedIn, function(req, res) {
-    //   db.collection('documents').find({user: req.body.user, title: req.body.title}).toArray((err, result) => {
-    //     if (err) return console.log(err)
-    //     res.render('folders.ejs', {
-    //       // user : req.user,
-    //       title: title
-    //     })
-    //   })
-    // });
-    // app.get('/my-notes', function(req, res) {
-      //   res.render('my-notes.ejs');
-      // });
-      app.get('/notes-page', function(req, res) {
-        res.render('notes-page.ejs');
-      });
-      // app.get('/choose', function(req, res) {
-    //   res.render('choose.ejs');
-    // });
+
+    app.get('/my-notes', function(req, res) {
+      res.render('my-notes.ejs');
+    });
+
+    app.post('/my-notes', (req, res) => {
+      db.collection('documents').save({user: req.body.user, title: req.body.title, note: req.body.note }, (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+        res.redirect('/my-notes')
+      })
+
+    })
+
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });
-    app.get('/my-notes', function(req, res) {
-      res.render('my-notes.ejs');
-    });
-
-    app.post('/notes', (req, res) => {
-      db.collection('documents').save({user: req.body.user, title: req.body.title, note: req.body.note, }, (err, result) => {
-        if (err) return console.log(err)
-        console.log('saved to database')
-        res.redirect('/folders')
-      })
-    })
 
 // message board routes ===============================================================
     //OCR software is suppose to output text into words. These words should be saved to database

@@ -9,18 +9,21 @@ body{
   width: 100%;
   margin: 0 auto;
   font-weight: 100;
-  background: rgb(153, 153, 153);
+  background: rgb(0, 0, 0);
   color: white;
   word-wrap:break-word;
   text-align: center;
   font-style: normal;
 }
+.jumbotron, body{
+  background:rgb(0, 0, 0);
+}
 nav{
-    font-size: .8rem;
+  font-size: .8rem;
 }
 a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 p{
     margin: 0;
@@ -45,10 +48,10 @@ li{
 }
 nav{
     padding: 10px 0;
-    color: black;
+    color: white;
 }
 .quick{
-    color: black;
+    color: white;
     font-style: normal;
     font-weight: 500;
     font-size: 1.4rem;
@@ -61,14 +64,10 @@ nav{
 }
 .fa-burn{
   display: block;
-  float: left;
   margin: 0;
   padding: 3%;
   color: white;
   height: 10vh;
-}
-.jumbotron, body{
-  background:rgb(153, 153, 153);
 }
 section .main{
     border: solid 1px white;
@@ -103,6 +102,7 @@ section .main{
 }
 .btn-warning{
   width: 20%;
+  margin-top: 10px;
 }
 
 /* Profile EJS */
@@ -176,8 +176,27 @@ textarea{
   color: black;
   min-height:200px;
   height:auto;
-  border-radius: 10px;
+
 }
+.my-notes{
+  width: 80%;
+  border: none;
+}
+
+/* folders page */
+.footer{
+  position:fixed;
+  bottom:0;
+  left:0;
+ }
+
+ /* my notes page */
+
+
+
+
+
+
 /* Media Queries  */
 
 @media only screen and (max-width: 650px){
