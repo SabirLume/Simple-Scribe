@@ -9,26 +9,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="profile.css">
-    
-    
 </head>
-
-<nav>
-    <section><a href="/"><i class="fas fa-burn"></i></a></i></section>
-</nav>
-<body>
-
-<section class= "takeNote">
-    <a href="/my-notes"><button >Go To Notes</button></a>
-    <button id="video">Take Note Photo</button>
-    <label class="fileUpload">
-        Choose File For Note
-        <input type="file" accept="image/*">    
-    </label>
-    
+<section>
+<% if (documents.length > 0) { %>
+    <% for(var i = 0; i < documents.length; i++) { %>
+    <ul class="foldersUl">
+        <li>
+            <span class="documents"><%= documents[i].title %></span>
+        </li> 
+    </ul>
+    <% } %>
+<% } %>
 </section>
-
+<section><a href="/my-notes"><button class="btn btn-default">Create Folder</button></a></section>
 
 <script src="main.js"></script>
 </body>

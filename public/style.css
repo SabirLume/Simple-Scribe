@@ -1,16 +1,195 @@
+*:focus {
+  outline: none;
+}
+html *{
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5rem;
+}
 body{
-  padding-top:80px;
-  word-wrap:break-word;
-  background: black;
+  width: 100%;
+  margin: 0 auto;
+  font-weight: 100;
+  background: rgb(153, 153, 153);
   color: white;
-
+  word-wrap:break-word;
+  text-align: center;
+  font-style: normal;
+}
+nav{
+    font-size: .8rem;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+p{
+    margin: 0;
+    padding: 10%;
 }
 img{
   height: 200px;
+  display: block;
+  margin: 0 auto;
 }
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+ul{
+    float: right;
+    list-style: none;
+    padding: 0 3% 0 0;
+}
+li{
+    display: inline-block;
+    
+}
+.foldersUl{
+  width: 100%
+}
+nav{
+    padding: 10px 0;
+    color: black;
+}
+.quick{
+    color: black;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: .4rem;
+    text-indent: .4rem;
+    text-align: center;
+    line-height: 34rem;
+    margin: 0;
+    padding: 0;
+}
+.fa-burn{
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 3%;
+  color: white;
+  height: 10vh;
+}
+.jumbotron, body{
+  background:rgb(153, 153, 153);
+}
+section .main{
+    border: solid 1px white;
+    border-left: none;
+    border-right:none;
+    float: left;  
+}
+.details{
+    width: 48%;
+    border: none;
+}
+/* Login & Sign Up CSS */
+.form-control{
+  border-radius: 10px;
+  border: 1px solid white;
+  width: 40%;
+  margin: 0 auto;
+  display: block;
+  background: transparent;
+  color: white;
+
+}
+.btn-default, .btn-lg, button{
+  border-radius: 10px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+.btn-warning{
+  width: 20%;
+}
+
+/* Profile EJS */
+.takeNote{
+  clear: both;
+}
+/* button.fileUpload{
+  font-size: .7rem;
+  border-radius: 10px;
+  margin: 2vh auto;
+  height: 20vh;
+  width: 55%;
+  border: 1px solid rgb(255, 255, 255, .2);
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  color: rgb(255, 255, 255);
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  display: block;
+} */
+h1.profile{
+  width: 69%;
+  padding-top: 22px;
+  color: white;
+  float: left;
+} 
+/* button, .fileUpload{
+  font-size: .7rem;
+  border-radius: 10px;
+  margin: 2vh auto;
+  height: 20vh;
+  width: 55%;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: 1px solid rgb(255, 255, 255, .2);
+  color: rgb(255, 255, 255);
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  display: block;
+} */
+.fileUpload{    
+  line-height: 20vh;
+}
+input[type="file"] {
+  display: none;
+}
+button:hover{
+  background: rgba(60, 190, 223, 0.63);
+}
+label:hover{
+  background: rgba(60, 190, 223, 0.63);
+}
+
+/* my-notes.ejs */
+.text{
+  width: 80%;
+  margin: 0 auto;
+}
+textarea{
+  font-size: .8rem;
+  border-bottom: 1px solid white;
+  resize: none;
+  background: transparent;
+  background: white;
+  border: none;
+  /* background: rgba(255, 255, 255, 0.932); */
+  margin-top: 2vh;
+  width: 100%;
+  color: black;
+  min-height:200px;
+  height:auto;
+  border-radius: 10px;
+}
+/* Media Queries  */
+
+@media only screen and (max-width: 650px){
+  .details{
+      width: 100%;
+  }
+}    
+@media (min-width: 651px) and (max-width: 882px){
+   .spaceBackground p{
+       line-height: 170px;
+   }
+}
+@media (min-width: 883px) and (max-width: 1138px){
+
 }
