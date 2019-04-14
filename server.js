@@ -19,6 +19,11 @@ var configDB = require('./config/database.js');
 
 var db
 
+
+
+
+
+
 // configuration ===============================================================
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)

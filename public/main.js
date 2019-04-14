@@ -1,6 +1,30 @@
+console.log("ids", document.getElementById("file"), document.getElementById("form"))
+document.getElementById("file").onchange = function() {
+    document.getElementById("form").submit();
+};
 
 
+var trash = document.getElementsByClassName("fa-trash");
 
+Array.from(trash).forEach(function(element) {
+    element.addEventListener('click', function(){
+      const folder = this.parentNode.parentNode.parentNode.innerText;
+      console.log("grabing folder ul", folder)
+      fetch('documents', {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        //puts  objects strings into a form that can be sent 
+        body: JSON.stringify({
+            //proprty name is title
+          'title': folder
+        })
+      }).then(function (response) {
+        window.location.reload()
+      })
+    });
+  });
 
 // var video = document.getElementById('video');
 // var canvas = document.getElementById('canvas');

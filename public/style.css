@@ -143,9 +143,12 @@ section .main{
 }
 .btnIndex{
   border: 1px solid white;
-  color: black;
+  color:white;
   width:10%;
   border:none;
+}
+.btn-default{
+  background: transparent;
 }
 .loginh1{
   padding-top: 10%;
@@ -233,8 +236,30 @@ margin-left: 2%;
   margin-bottom: 2%;
   margin-right: 2%;
   font-weight:100;
+  color: #1ed21e;
  }
-
+ .fa-trash{
+   color: rgba(75, 75, 75, 0.212);
+   position: absolute;
+   right:0;
+   margin-right: 10%;
+   font-size: 1rem;
+   padding-top:5px;
+ }
+ .fa-pencil-alt{
+  color: rgba(75, 75, 75, 0.212);
+  position: absolute;
+  right:0;
+  margin-right: 20%;
+  font-size: 1rem;
+  padding-top:5px;
+ }
+.fa-trash:hover{
+  color: red;
+}
+.fa-pencil-alt:hover{
+  color: #1ed21e;
+}
 /* Media Queries  */
 
 @media only screen and (max-width: 650px){
