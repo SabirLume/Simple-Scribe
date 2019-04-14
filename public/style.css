@@ -9,21 +9,19 @@ body{
   width: 100%;
   margin: 0 auto;
   font-weight: 100;
-  background: rgb(0, 0, 0);
-  color: white;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   word-wrap:break-word;
   text-align: center;
   font-style: normal;
 }
-.jumbotron, body{
-  background:rgb(0, 0, 0);
-}
+
 nav{
   font-size: .8rem;
 }
 a{
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 p{
     margin: 0;
@@ -34,10 +32,28 @@ img{
   display: block;
   margin: 0 auto;
 }
+.indexImage{
+  background-image: url("img/notes.jpg");
+  background-size: cover;
+  object-position: center;
+}
+.filter{
+  background-color: rgba(0, 0, 0, 0.411);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.indexLogin{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 ul{
     float: right;
     list-style: none;
-    padding: 0 3% 0 0;
+    padding: 0 0 0 0;
 }
 li{
     display: inline-block;
@@ -46,12 +62,22 @@ li{
 .foldersUl{
   width: 100%
 }
+.documents{
+ 
+  border: none;
+  padding: 3% 0;
+  width: 100%;
+  
+}
 nav{
     padding: 10px 0;
-    color: white;
+    color: rgb(0, 0, 0);
+}
+h1{
+  padding-top:3%;
 }
 .quick{
-    color: white;
+    color: rgb(0, 0, 0);
     font-style: normal;
     font-weight: 500;
     font-size: 1.4rem;
@@ -62,15 +88,18 @@ nav{
     margin: 0;
     padding: 0;
 }
+.h1Index{
+  color:white;
+}
 .fa-burn{
   display: block;
   margin: 0;
   padding: 3%;
-  color: white;
+  color: rgb(0, 0, 0);
   height: 10vh;
 }
 section .main{
-    border: solid 1px white;
+    border: solid 1px rgb(0, 0, 0);
     border-left: none;
     border-right:none;
     float: left;  
@@ -81,81 +110,79 @@ section .main{
 }
 /* Login & Sign Up CSS */
 .form-control{
-  border-radius: 10px;
-  border: 1px solid white;
-  width: 40%;
+  padding-top: 15px;
+  border: none;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  width: 20%;
   margin: 0 auto;
   display: block;
   background: transparent;
-  color: white;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
 
 }
-.btn-default, .btn-lg, button{
-  border-radius: 10px;
+.form-control:focus{
+  background: rgba(230, 230, 230, 0.274);
+  border-radius: 3px;
+}
+.btn-default, .btn-lg, .fileUpload, button{
+  border-radius: 3px;
   background-color: Transparent;
   background-repeat:no-repeat;
-  border-color: rgb(255, 255, 255);
-  color: rgb(255, 255, 255);
+  background-color: rgb(230, 230, 230);
   cursor:pointer;
   overflow: hidden;
   outline:none;
+  border: none;
+  font-size: 1rem;
+  padding: 1%;
 }
 .btn-warning{
   width: 20%;
-  margin-top: 10px;
+  margin-top: 15px;
 }
-
+.btnIndex{
+  border: 1px solid white;
+  color: black;
+  width:10%;
+  border:none;
+}
+.loginh1{
+  padding-top: 10%;
+  padding-bottom:10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+hr + p, p, a{
+  font-size: 1rem;
+  padding-top:0;
+}
+hr + p, p{
+  padding: 0;
+}
+hr{
+  visibility: hidden;
+}
 /* Profile EJS */
 .takeNote{
   clear: both;
 }
-/* button.fileUpload{
-  font-size: .7rem;
-  border-radius: 10px;
-  margin: 2vh auto;
-  height: 20vh;
-  width: 55%;
-  border: 1px solid rgb(255, 255, 255, .2);
-  background-color: Transparent;
-  background-repeat:no-repeat;
-  color: rgb(255, 255, 255);
-  cursor:pointer;
-  overflow: hidden;
-  outline:none;
-  display: block;
-} */
+
 h1.profile{
   width: 69%;
   padding-top: 22px;
-  color: white;
+  color: rgb(0, 0, 0);
   float: left;
 } 
-/* button, .fileUpload{
-  font-size: .7rem;
-  border-radius: 10px;
-  margin: 2vh auto;
-  height: 20vh;
-  width: 55%;
-  background-color: Transparent;
-  background-repeat:no-repeat;
-  border: 1px solid rgb(255, 255, 255, .2);
-  color: rgb(255, 255, 255);
-  cursor:pointer;
-  overflow: hidden;
-  outline:none;
-  display: block;
-} */
-.fileUpload{    
-  line-height: 20vh;
-}
+
 input[type="file"] {
   display: none;
 }
-button:hover{
-  background: rgba(60, 190, 223, 0.63);
+.btnIndex:hover, label:hover, button:hover{
+  background: rgba(7, 99, 236, 0.63);
 }
-label:hover{
-  background: rgba(60, 190, 223, 0.63);
+.documents:hover{
+  background: rgba(128, 128, 128, 0.082);
 }
 
 /* my-notes.ejs */
@@ -170,32 +197,43 @@ textarea{
   background: transparent;
   background: white;
   border: none;
-  /* background: rgba(255, 255, 255, 0.932); */
   margin-top: 2vh;
   width: 100%;
   color: black;
-  min-height:200px;
+  min-height:80vh;
   height:auto;
 
+}
+.notesPad{
+  padding-top:2vh;
 }
 .my-notes{
   width: 80%;
   border: none;
 }
-
+.fa-chevron-left{
+position:fixed;
+top:0;
+left:0;
+margin-top: 2%;
+margin-left: 2%;
+}
 /* folders page */
 .footer{
   position:fixed;
   bottom:0;
   left:0;
+  margin-bottom: 2%;
+  margin-left: 2%;
  }
-
- /* my notes page */
-
-
-
-
-
+ .footerRight{
+  position:fixed;
+  bottom:0;
+  right:0;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  font-weight:100;
+ }
 
 /* Media Queries  */
 

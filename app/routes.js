@@ -8,10 +8,11 @@
     });
     // folders SECTION =========================
     app.get('/folders', isLoggedIn, function(req, res) {
-      db.collection('documents').find().toArray((err, result) => {
+      db.collection('documents').find({user: req.session.passport.user}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('folders.ejs', {
           // user : req.user,
+
           //passing the array of objects into file to use it
           documents: result 
         })
@@ -25,7 +26,7 @@
     });
 
     app.post('/my-notes', (req, res) => {
-      db.collection('documents').save({user: req.body.user, title: req.body.title, note: req.body.note }, (err, result) => {
+      db.collection('documents').save({user: req.session.passport.user, title: req.body.title, note: req.body.note }, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
         res.redirect('/my-notes')
