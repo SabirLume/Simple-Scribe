@@ -1,16 +1,17 @@
-console.log("ids", document.getElementById("file"), document.getElementById("form"))
-document.getElementById("file").onchange = function() {
-    document.getElementById("form").submit();
+
+  document.getElementById("file").onchange = function() {
+   document.getElementById("form").submit();
 };
-
-
 var trash = document.getElementsByClassName("fa-trash");
 
 Array.from(trash).forEach(function(element) {
     element.addEventListener('click', function(){
-      const folder = this.parentNode.parentNode.parentNode.innerText;
-      console.log("grabing folder ul", folder)
-      fetch('documents', {
+      const note = this.parentNode.parentNode.childNodes[1].innerText;
+      const title = this.parentNode.parentNode.childNodes[3].innerText;
+    //   const notes = this.parentNode.parentNode;
+ 
+      console.log("this is the title:", title)
+      fetch('my-notes', {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json'
@@ -18,73 +19,13 @@ Array.from(trash).forEach(function(element) {
         //puts  objects strings into a form that can be sent 
         body: JSON.stringify({
             //proprty name is title
-          'title': folder
+          
+          'note': note,
+          'title': title
+          
         })
       }).then(function (response) {
         window.location.reload()
       })
     });
   });
-
-// var video = document.getElementById('video');
-// var canvas = document.getElementById('canvas');
-// var context = canvas.getContext('2d');
-
-// //allows me to access the user's camera
-// if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
-//   navaigator.mediaDevices.getUserMedia({video: true}).then(function(stream){
-//     video.srcObject = stream;
-//     video.play();
-//   });
-// }
-// // allows me to take a photo using a snapshot of the video
-// document.getElementById('snap').addEventListener('click', function(){
-//   context.drawImage(video, 0, 0, 640, 480);
-// })
-
-
-
-
-
-// var thumbUp = document.getElementsByClassName("fa-thumbs-up");
-// var trash = document.getElementsByClassName("fa-trash");
-
-// Array.from(thumbUp).forEach(function(element) {
-//       element.addEventListener('click', function(){
-//         const msg = this.parentNode.parentNode.childNodes[1].innerText
-//         const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-//         fetch('notes', {
-//           method: 'put',
-//           headers: {'Content-Type': 'application/json'},
-//           body: JSON.stringify({
-//             'msg': msg,
-//             'thumbUp':thumbUp
-//           })
-//         })
-//         .then(response => {
-//           if (response.ok) return response.json()
-//         })
-//         .then(data => {
-//           console.log(data)
-//           window.location.reload(true)
-//         })
-//       });
-// });
-
-// Array.from(trash).forEach(function(element) {
-//   element.addEventListener('click', function(){
-//     const msg = this.parentNode.parentNode.childNodes[1].innerText;
-//     fetch('notes', {
-//       method: 'delete',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         'msg': msg
-//       })
-//     }).then(function (response) {
-//       window.location.reload()
-//     })
-//   });
-// });
-

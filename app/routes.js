@@ -21,8 +21,6 @@ module.exports = function (app, passport, db) {
           console.log('saved to database')
           res.redirect('/my-notes');
         })
-
-
       });
   });
 
@@ -68,37 +66,10 @@ module.exports = function (app, passport, db) {
     res.redirect('/');
   });
 
-  // message board routes ===============================================================
-  //OCR software is suppose to output text into words. These words should be saved to database
-  // app.post('/translation', (req, res) => {
-  //   db.collection('documents').save({ text: req.body.text}, (err, result) => {
-  //    console.log(req.body)
-  //     if (err) return console.log(err)
-  //     console.log('saved to database')
-  //     res.redirect('/folders')
-  //   })
-  // })
-  //able to edit text that was translated by the OCR software
-  // app.put('/translation', (req, res) => {
-  //   db.collection('documents')
-  //   .findOneAndUpdate({ text: req.body.text}, {
-  //     $set: {
-  //       translation:req.body.translation
-  //     }
-  //   }, {
-  //     sort: {_id: -1},
-  //     upsert: true
-  //   }, (err, result) => {
-  //     if (err) return res.send(err)
-  //     res.send(result)
-  //   })
-  // })
-
   app.delete('/my-notes', (req, res) => {
     // console.log('Looking for message id', req.body.messageid)
-    //               ---------------------------------- converting string into a special object mongo can use id string to id object
-    db.collection('documents').findOneAndDelete({ title: req.body.title }, (err, result) => {
-      console.log("this is the title", title)
+    //  converting string into a special object mongo can use id string to id object
+    db.collection('documents').findOneAndDelete({title: req.body.title, note: req.body.note }, (err, result) => {
       if (err) return res.send(500, err)
       res.send('Message deleted!')
       console.log('Message Deleted')
