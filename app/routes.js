@@ -1,3 +1,4 @@
+let ObjectId = require('mongodb').ObjectId;
 module.exports = function (app, passport, db) {
   const multer = require('multer');
   const upload = multer({
@@ -13,6 +14,7 @@ module.exports = function (app, passport, db) {
   app.post('/fileUpload', upload.single('file-to-upload'), (req, res) => {
     console.log("file upload", req.file)
     // Recognize text of any language in any format
+    //tesseract is grabbing the file from the path the image is being saved
     Tesseract.recognize(req.file.path)
       .then(function (result) {
         console.log(result.text)
@@ -23,6 +25,14 @@ module.exports = function (app, passport, db) {
         })
       });
   });
+  // app.get('/my-notes', isLoggedIn, function (req, res){
+  //   db.colletion('documents').find({user: req.session.passport.user }).toArray((err, result) =>{
+  //     if(err) return console.log(err)
+  //     res.render('my-notes.ejs', {
+  //       documents: result
+  //     })
+  //   })
+  // });
 
   // show the home page (will also have our login links)
   app.get('/', function (req, res) {
@@ -38,13 +48,37 @@ module.exports = function (app, passport, db) {
         //passing the array of objects into file to use it
         documents: result
       })
-      console.log("this is showing the results", result)
+      // console.log("this is showing the results", result)
       // console.log("this is showing the results" , result)
     })
   });
 
-  app.get('/my-notes', function (req, res) {
-    res.render('my-notes.ejs');
+// sent the user to the db  
+//askeed the db for inforamtion and got it back
+//Twitter example
+  app.get('/new-note', function (req, res) {
+  db.collection('documents').insertOne({ user: req.session.passport.user })
+  //this is a promise 
+  //then asks for a function what to do when the promise is done  
+  .then(function(note){
+    //whatever db.collection does wait for it then pass it through the function
+    console.log(note.insertedId);
+      res.redirect('/my-notes/' + note.insertedId)
+    }, () => {})
+   
+  });
+
+
+  app.get('/my-notes/:id', function (req, res) {
+    // couldnn't  search mongo by id because they store it as a object . 
+    //find is giving every note that has the same id
+    db.collection('documents').find({ "_id": new ObjectId(req.params.id)  }).toArray((err, result) => {
+    // res.render('my-notes.ejs');
+    console.log(req.params.id);
+    console.log(err);
+    console.log(result);
+    res.render('my-notes.ejs',result[0])
+  })
   });
 
   app.post('/my-notes', (req, res) => {
@@ -57,9 +91,6 @@ module.exports = function (app, passport, db) {
   })
 
 
-
-
-
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {
     req.logout();
@@ -69,7 +100,7 @@ module.exports = function (app, passport, db) {
   app.delete('/my-notes', (req, res) => {
     // console.log('Looking for message id', req.body.messageid)
     //  converting string into a special object mongo can use id string to id object
-    db.collection('documents').findOneAndDelete({title: req.body.title, note: req.body.note }, (err, result) => {
+    db.collection('documents').findOneAndDelete({ title: req.body.note, note: req.body.title }, (err, result) => {
       if (err) return res.send(500, err)
       res.send('Message deleted!')
       console.log('Message Deleted')

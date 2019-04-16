@@ -9,8 +9,8 @@ Array.from(trash).forEach(function(element) {
       const note = this.parentNode.parentNode.childNodes[1].innerText;
       const title = this.parentNode.parentNode.childNodes[3].innerText;
     //   const notes = this.parentNode.parentNode;
- 
       console.log("this is the title:", title)
+      console.log("this is the note" , note)
       fetch('my-notes', {
         method: 'delete',
         headers: {
