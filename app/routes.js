@@ -63,21 +63,22 @@ module.exports = function (app, passport, db) {
   .then(function(note){
     //whatever db.collection does wait for it then pass it through the function
     console.log(note.insertedId);
-      res.redirect('/my-notes/' + note.insertedId)
+      res.redirect('/my-notes?noteId=' + note.insertedId)
     }, () => {})
    
   });
 
 
-  app.get('/my-notes/:id', function (req, res) {
+  app.get('/my-notes', function (req, res) {
     // couldnn't  search mongo by id because they store it as a object . 
     //find is giving every note that has the same id
     db.collection('documents').find({ "_id": new ObjectId(req.params.id)  }).toArray((err, result) => {
     // res.render('my-notes.ejs');
+  
     console.log(req.params.id);
     console.log(err);
     console.log(result);
-    res.render('my-notes.ejs',result[0])
+    res.render('my-notes.ejs',{result: result[0]})
   })
   });
 
